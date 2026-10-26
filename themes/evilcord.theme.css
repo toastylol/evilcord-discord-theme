@@ -1,6 +1,6 @@
 /* IMPORT CSS */
-@import url("https://toastylol.github.io/evilcord-discord-theme/main_minified.css");
-@import url("https://toastylol.github.io/evilcord-discord-theme/vencord_minified.css");
+@import url("https://toastylol.github.io/evilcord-discord-theme/src/main_minified.css");
+@import url("https://toastylol.github.io/evilcord-discord-theme/src/vencord_minified.css");
 /* SETTINGS */
 :root {
   /* ACCENT COLORS */
