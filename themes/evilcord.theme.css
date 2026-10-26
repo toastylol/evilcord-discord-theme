@@ -1,0 +1,588 @@
+/* IMPORT CSS */
+@import url("https://toastylol.github.io/maincss-for-clearvision/main_minified.css");
+@import url("https://toastylol.github.io/maincss-for-clearvision/vencord_minified.css");
+/* SETTINGS */
+:root {
+  /* ACCENT COLORS */
+  --main-color: #cf3e58; /* main accent color (hex, rgb or hsl) [default: #2780e6] */
+  --hover-color: #8827479d; /* hover accent color (hex, rgb or hsl) [default: #1e63b3] */
+  --success-color: #43b581; /* positive accent color (hex, rgb or hsl) [default: #43b581] */
+  --danger-color: #c11919; /* danger accent color (hex, rgb or hsl) [default: #982929] */
+  /* STATUS COLORS */
+  --online-color: #43b581; /* online status color (hex, rgb or hsl) [default: #43b581] */
+  --idle-color: #faa61a; /* idle status color (hex, rgb or hsl) [default: #faa61a] */
+  --dnd-color: #982929; /* dnd status color (hex, rgb or hsl) [default: #982929] */
+  --streaming-color: #5d00ff; /* streaming status color (hex, rgb or hsl) [default: #593695] */
+  --offline-color: #808080; /* offline/invisible status color (hex, rgb or hsl) [default: #808080] */
+  /* APP BACKGROUND */
+  --background-shading-percent: 100%; /* app background shading amount (0 for complete smoothness) [default: 100%] */
+  --background-image: url(); /* app background image (link must be HTTPS) */
+  --background-position: center; /* app background position [default: center] */
+  --background-size: cover; /* app background size (px) [default: cover] */
+  --background-attachment: fixed; /* app background attachment [default: fixed] */
+  --background-filter: saturate (calc(var(--saturation-factor, 1) * 1)); /* app background adjustments (ex: blur, saturation, brightness) (more info: https://developer.mozilla.org/en-US/docs/Web/CSS/filter) [default: saturate(calc(var(--saturation-factor, 1) * 1))] */
+  /* USER POPOUT BACKGROUND */
+  --user-popout-image: var(--background-image); /* user popout background image (link must be HTTPS) (not applied to nitro users) [default: var(--background-image)] */
+  --user-popout-position: var(--background-position); /* user popout position [default: var(--background-position)] */
+  --user-popout-size: var(--background-size); /* user popout size (px) [default: var(--background-size)] */
+  --user-popout-attachment: var(--background-attachment); /* user popout background attachment [default: var(--background-attachment)] */
+  --user-popout-filter: var(--background-filter); /* user popout background adjustments (ex: blur, saturation, brightness) (more info: https://developer.mozilla.org/en-US/docs/Web/CSS/filter) [default: var(--background-filter);] */
+  /* USER MODAL BACKGROUND */
+  --user-modal-image: var(--background-image); /* user modal background image (link must be HTTPS) (not applied to nitro users) [default: var(--background-image)] */
+  --user-modal-position: var(--background-position); /* user modal position [default: var(--background-position)] */
+  --user-modal-size: var(--background-size); /* user modal size (px) [default: var(--background-size)] */
+  --user-modal-attachment: var(--background-attachment); /* user modal background attachment [default: var(--background-attachment)] */
+  --user-modal-filter: var(--background-filter); /* user modal background adjustments (ex: blur, saturation, brightness) (more info: https://developer.mozilla.org/en-US/docs/Web/CSS/filter) [default: var(--background-filter);] */
+  /* HOME ICON */
+  --home-icon: url(); /* home button icon (link must be HTTPS) */
+  --home-size: cover; /* home button icon size (px) [default:cover] */
+  /* FONTS */
+  --main-font: Nunito; /* main font for app (font must be installed) [default: gg sans, Helvetica Neue, Helvetica, Arial, sans-serif] */
+  --code-font: ; /* font for codeblocks (font must be installed) [default: Consolas, Liberation Mono, Menlo, Courier, monospace] */
+  /* CHANNEL COLORS */
+  --channel-normal: rgb(110, 110, 110); /* channel text color [default: var(--interactive-text-default)] */
+  --channel-muted: rgb(100, 100, 100); /* muted channel text color [default: var(--interactive-muted)] */
+  --channel-hover: var(--interactive-text-hover); /* hovered channel text color [default: var(--interactive-text-hover)] */
+  --channel-selected: var(--interactive-text-active); /* selected channel text color [default: var(--interactive-text-active)] */
+  --channel-selected-bg: rgb(from var(--main-color) r g b / 0.5); /* selected channel background [default: var(--main-color)] */
+  --channel-unread: rgb(from var(--main-color) r g b / 0.9); /* unread channel text color [default: var(--main-color)] */
+  --channel-unread-hover: rgb(from var(--main-color) r g b / 0.7); /* unread channel hover color [default: var(--hover-color)] */
+  /* ACCESSIBILITY */
+  --focus-color: color-mix(in srgb, var(--main-color), white 30%); /* outline when pressing TAB key [default: var(--main-color)] */
+}
+
+/* THEME SPECIFIC SHADING */
+/* LIGHT THEME */
+:is(.theme-light, .theme-dark .theme-light) {
+  --background-shading: rgba(252, 252, 252, 0.3); /* app background shading color [default: rgba(252, 252, 252, 0.3)] */
+  --card-shading: rgba(252, 252, 252, 0.3); /* cards background shading color [default: rgba(252, 252, 252, 0.3)] */
+  --popout-shading: rgba(252, 252, 252, 0.7); /* popouts background shading color [default: rgba(252, 252, 252, 0.7)] */
+  --modal-shading: rgba(252, 252, 252, 0.5); /* modals background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --input-shading: rgba(0, 0, 0, 0.3); /* inputs background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --normal-text: #36363c; /* text color [default: #36363c] */
+  --muted-text: #75757e; /* muted text color [default: #75757e] */
+}
+
+/* ASH THEME */
+:is(.theme-dark, .theme-light .theme-dark) {
+  --background-shading: rgba(0, 0, 0, 0.4); /* app background shading color [default: rgba(0, 0, 0, 0.4)] */
+  --card-shading: rgba(0, 0, 0, 0.2); /* cards background shading color [default: rgba(0, 0, 0, 0.2)] */
+   --popout-shading: rgba(0, 0, 0, 0.6); /* popouts background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --modal-shading: rgba(0, 0, 0, 0.4); /* modals background shading color [default: rgba(0, 0, 0, 0.4)] */
+  --input-shading: rgba(255, 255, 255, 0.05); /* inputs background shading color [default: rgba(255, 255, 255, 0.05)] */
+  --normal-text: #d8d8db; /* text color [default: #d8d8db] */
+  --muted-text: #aeaeb4; /* muted text color [default: #aeaeb4] */
+}
+
+/* DARK THEME */
+:is(.theme-darker, .theme-light .theme-darker) {
+  --background-shading: rgba(0, 0, 0, 0.6); /* app background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --card-shading: rgba(0, 0, 0, 0.3); /* cards background shading color [default: rgba(0, 0, 0, 0.3)] */
+  --popout-shading: rgba(0, 0, 0, 0.7); /* popouts background shading color [default: rgba(0, 0, 0, 0.7)] */
+  --modal-shading: rgba(0, 0, 0, 0.5); /* modals background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --input-shading: rgba(255, 255, 255, 0.05); /* inputs background shading color [default: rgba(255, 255, 255, 0.05)] */
+  --normal-text: #fbfbfb; /* text color [default: #fbfbfb] */
+  --muted-text: #94949c; /* muted text color [default: #94949c] */
+}
+
+/* ONYX THEME */
+:is(.theme-midnight, .theme-light .theme-midnight) {
+  --background-shading: hsl(350, 29%, 19%); /* app background shading color [default: rgba(0, 0, 0, 0.8)] */
+  --card-shading: rgba(0, 0, 0, 0.4); /* cards background shading color [default: rgba(0, 0, 0, 0.4)] */
+  --popout-shading: rgba(0, 0, 0, 0.8); /* popouts background shading color [default: rgba(0, 0, 0, 0.8)] */
+  --modal-shading: rgba(0, 0, 0, 0.6); /* modals background shading color [default: rgba(0, 0, 0, 0.6)] */
+  --input-shading: rgba(255, 255, 255, 0.05); /* inputs background shading color [default: rgba(255, 255, 255, 0.05)] */
+  --normal-text: #dcdcde; /* text color [default: #dcdcde] */
+  --muted-text: #86868e; /* muted text color [default: #86868e] */
+}
+
+/* channel display tweaks */
+.button_e131a9,
+.button__201d5 {
+  border-radius: 8px !important;
+}
+
+a.link__2ea32::before,
+.iconVisibility_c69b6d.wrapper__2ea32.typeThread__2ea32.modeSelected__2ea32,
+.link__2ea32.basicChannelRowLink__2ea32::before {
+  -webkit-mask-image: linear-gradient(to right, black 50%, transparent 100%) !important;
+  mask-image: linear-gradient(to right, black 50%, transparent 100%) !important;
+}
+
+.interactive_bf202d.interactive__972a0::before {
+  -webkit-mask-image: linear-gradient(to right, black 30%, transparent 100%) !important;
+  mask-image: linear-gradient(to right, black 30%, transparent 100%) !important;
+}
+
+div[data-list-id^="private-channels"] {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.content__908e2::before,
+.content__908e2::after {
+  background-color: rgba(202, 187, 187, 0.323) !important;
+}
+
+.selected__91a9d .nameContainer__703b9 {
+  text-shadow:  none !important;
+}
+
+/* inbox mentions bar */
+.bar__7aaec:not(.mentionsBar__7aaec),
+.bar__3b95d:not(.mentionsBar__7aaec) {
+  background-color: unset !important;
+  backdrop-filter: blur(8px);
+}
+
+.box__376cb {
+  background: rgba(0, 0, 0, 0.2) !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.channelHeader__5d903 {
+  background: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  z-index: 100 !important;
+}
+
+.scroller__95796 {
+  padding-right: 9px !important;
+}
+
+.sidebarHeader__0ab2c {
+  padding-left: 5px !important;
+}
+
+.wrapper_ef3116 {
+  margin-top: max(0px, calc(40px - var(--top-bar-height))) !important;
+}
+
+.stack_dbd263.scroller_ef3116.none_d125d2.scrollerBase_d125d2 {
+  padding-top: 0px !important;
+}
+
+.control__5a838 {
+  padding-bottom: 6px !important;
+}
+
+.actionBar__8a031 {
+  margin-top: -16px !important;
+}
+
+.footer_e8b59c {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.header_c6bf1b.stickyHeader_c6bf1b.stickyHeaderElevated_c6bf1b,
+.header_c6bf1b.stickyHeaderElevated_c6bf1b {
+  background: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+
+  margin-right: -16px !important;
+  margin-left: -16px !important;
+}
+
+.header_c6bf1b,
+.header_c6bf1b.stickyHeader_c6bf1b {
+  margin-left: -16px !important;
+  margin-right: -16px !important;
+}
+
+/* blurred typing indicator */
+.typing_b88801 {
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+
+  border-radius: 8px !important;
+
+  margin-left: 6px !important;
+  margin-right: 6px !important;
+  top: -14px !important;
+
+  box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.2) !important;
+}
+
+.root__6981d:not(.tileWrapper__6981d) {
+    background-color: rgba(0,0,0,0.4) !important;
+}
+
+/* voice channel tweaks */
+.fullRegionDropdownButton_f1ceac.disconnect_f1ceac,
+.buttonSection__1405b {
+  background-color: unset !important;
+}
+
+.videoGrid_a21736,
+.messageGroupWrapper__432f4 {
+  background-color: rgba(0,0,0,0.2) !important;
+}
+
+/* jump to present */
+.jumpToPresentBar__0f481 {
+  border-radius: 15px !important;
+}
+
+.container__8cb2e {
+  border-radius: 16px 16px 0 0 !important;
+  overflow: hidden !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.wrapper__14245, .sectionContainer__61424 {
+  width: fit-content !important;
+}
+
+.messagesPopoutWrap_e8b59c,
+.container__6764b {
+  background: rgba(0,0,0,0.1) !important;
+  box-shadow: none !important;
+}
+
+.header_e8b59c,
+.messagesPopout_e8b59c {
+  background: var(--popout-shading) !important;
+}
+
+.container__34c2c,
+.header__34c2c {
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+/* new messages top bar */
+.newMessagesBar__0f481 {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* .reaction__23977.reactionMe__23977 {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+
+  margin-top: 0px !important;
+} */
+
+.footerContent__083ae.collapsedFooterContent__083ae {
+  background: var(--background-surface-high) !important;
+}
+
+.container__01ae2.floating__01ae2 {
+  border-radius: 16px !important;
+  padding-left: 0 !important;
+}
+
+/* voice channel connection graph */
+.graphContainer_effb26 {
+  background: unset !important;
+}
+
+/* reply tweaks */
+.repliedTextPreview_c19a55::before {
+  content: "•" !important;
+
+  margin-left: 2px !important;
+  margin-right: 6px !important;
+
+  font-weight: normal !important;
+  font-style: normal !important;
+  color: var(--text-muted) !important;
+}
+
+.header__14245 {
+  margin-left: 4px !important;
+}
+
+/* message timestamp tweaks */
+.cozy_c19a55 .timestamp_c19a55.alt_c19a55 {
+  height: 1.375rem !important;
+  inset-inline-start: 0 !important;
+  line-height: 1.375rem !important;
+
+  position: absolute !important;
+  text-align: end !important;
+
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
+
+  width: 56px !important;
+  z-index: 1 !important;
+}
+
+.cozy_c19a55 .timestamp_c19a55 {
+  width: max-content !important;
+  min-width: max-content !important;
+
+  flex-shrink: 0 !important;
+
+  white-space: nowrap !important;
+  margin-right: 6px !important;
+}
+
+/* quest progress tweaks */ 
+.stack_dbd263.questProgress_feae96 {
+  margin-right: 170px !important;
+}
+
+/* integrations deny and allow button colors*/
+.deny_f5fff4.selected_f5fff4 {
+  background: rgb(from var(--danger-color) r g b / 0.8) !important;
+}
+
+.allow_f5fff4.selected_f5fff4 {
+  background: rgb(from var(--status-positive-background) r g b / 0.6) !important;
+}
+
+.headerContainer__7db08 {
+  backdrop-filter: blur(8px) !important;
+
+  margin-right: -16px !important;
+  margin-left: -16px !important;
+}
+
+.content_ab8609 {
+  background: black !important;
+}
+
+.popover_c97e55.visible_c97e55.wrapper_f7ecac {
+  box-shadow: none !important;
+  border-radius: 12px !important;
+
+  top: 0 !important;
+  left: 1% !important;
+  height: 100% !important;
+  margin-top: 25px !important;
+  margin-right: -7px !important;
+
+
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(4px) !important;
+  border-radius: 0 12px 12px 0 !important;
+  
+
+  transition: max-width 0.2s ease, opacity 0.2s ease, padding 0.2s ease !important;
+}
+
+.popover_c97e55.visible_c97e55.wrapper_f7ecac {
+  border-radius: 12px !important;
+}
+
+/* status thought bubble tweaks */
+.outer_ab8609::before {
+  content: "" !important;
+  display: block !important; 
+  position: absolute !important;
+  
+  height: 20px !important;
+  width: 20px !important;
+  border-radius: 50% !important;
+  box-sizing: border-box !important;
+  
+  background-color: black !important;
+  
+  inset-inline-start: 10px !important;
+  top: -8px !important;
+  
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.outer_ab8609::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  
+  height: 10px !important;
+  width: 10px !important;
+  border-radius: 50% !important;
+  box-sizing: border-box !important;
+  
+  background-color: black !important;
+  
+  inset-inline-start: -3px !important;
+  top: -15px !important;
+  
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.popover__2d0ab.visible__2d0ab.statusPopover__2d0ab.wrapper_f7ecac {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* widget tweaks */
+.widgetPreviews__7f9c0:first-of-type {
+  margin: unset !important;
+}
+
+.container__8a031.size-md__8a031 {
+  width: 650px !important;
+  max-width: 90vw !important;
+}
+
+.linkCalloutContainer_ad9c52 {
+  max-width: 600px !important;
+}
+
+.postEnrollmentBackgroundCollapsed__24e2c, .postEnrollmentBackgroundExpanded__24e2c {
+  background-color: var(--home-background) !important;
+}
+
+.content_f75fb0 > aside > .outer_c0bea0 {
+  overflow: unset !important;
+}
+
+/* equicord specific tweaks */
+.vc-switch-container {
+  display: unset !important;
+  background-color: unset !important;
+}
+
+.vc-switch-container.vc-switch-checked {
+  display: unset !important;
+  background-color: unset !important;
+}
+
+#vc-indicators-indicator-items {
+  height: 50px !important;
+  width: 50px !important;
+}
+
+/* server sidebar, favourites and betterfolders tweak */
+.tree_ef3116 > .stack_dbd263.scroller_ef3116.scrollbarGutterStable_d125d2.thin_d125d2.scrollerBase_d125d2.fade_d125d2 {
+  margin-left: 5px !important;
+  margin-top: -3px !important;
+}
+
+.folderGroupBackground__48112 {
+  margin-left: -5px !important;
+  margin-right: 3px !important;
+  margin-bottom: -3px !important;
+}
+
+[data-list-item-id="guildsnav___favorites"] .favoriteIcon_c9fddf {
+  background: none !important;
+  color: #cc667c !important;
+  transform: scale(0.8) !important;
+}
+
+[data-list-item-id="guildsnav___favorites"] .favoriteIcon_c9fddf path {
+  fill: currentColor !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+[data-list-item-id="guildsnav___favorites"]:hover .favoriteIcon_c9fddf {
+  color: #4909198a !important; 
+}
+
+[data-list-item-id="guildsnav___favorites"]:active .favoriteIcon_c9fddf,
+[data-list-item-id="guildsnav___favorites"][aria-selected="true"] .favoriteIcon_c9fddf {
+  color: #4909198a !important; 
+}
+
+.sidebarList__5e434.sidebarListRounded__5e434 {
+  margin-left: 8px !important;
+}
+
+/* wip, channel nav & tabs tweaks
+.content__5e434 {
+  margin-top: 30px !important;
+  height: calc(100% - 30px) !important;
+}
+
+.backForwardButtons__63abb {
+  display: flex !important;
+  margin-top: 22px !important;
+  margin-right: 10px;
+}
+
+.leadingGrow_c38106 {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.leading_c38106 {
+    box-sizing: border-box;
+    gap: var(--space-12);
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+    -webkit-app-region: no-drag;
+}
+
+.leading_c38106,
+.title_c38106 {
+    align-items: center;
+    display: flex;
+}
+
+.platform-osx .backForwardButtons__63abb {
+    margin-inline-start: calc(var(--custom-bf-outer-padding) * -1);
+    min-width: unset;
+}
+
+.tabBar__97b44 {
+    align-items: stretch;
+    display: flex;
+    flex: 1 1 auto;
+    height: var(--custom-app-top-bar-height);
+    min-width: 0;
+    position: relative;
+    -webkit-app-region: drag;
+}
+
+.tab__97b44 {
+    align-items: center;
+    display: flex;
+    flex: 1 1 0;
+    max-width: 200px;
+    min-width: 0;
+    position: relative;
+    -webkit-app-region: no-drag;
+    color: var(--interactive-text-default);
+    padding-inline-end: var(--space-4);
+}
+
+.tabActive__97b44 {
+    background-color: var(--interactive-background-active);
+    color: var(--interactive-text-active);
+}
+
+.newTabButton__97b44 {
+    align-self: center;
+    display: flex;
+    flex-shrink: 0;
+    margin-inline-start: calc((var(--custom-app-top-bar-height) - var(--space-24)) / 2);
+    -webkit-app-region: no-drag;
+}
+
+.title_c38106 {
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    bottom: 0;
+}
+
+.trailing_c38106,
+.winButtons_c38106 {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.trailing_c38106 {
+    gap: var(--space-12);
+    position: relative;
+    z-index: 1;
+    -webkit-app-region: no-drag;
+} */
