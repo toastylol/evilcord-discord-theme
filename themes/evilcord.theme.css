@@ -493,6 +493,14 @@ div[data-list-id^="private-channels"] {
   margin-left: 8px !important;
 }
 
+.platform-osx .wrapper_ef3116 {
+  margin-left: 6px !important;
+}
+
+.container__133bf, .page__5e434 {
+  padding-right: 18px !important;
+}
+
 /* wip, channel nav & tabs tweaks
 .content__5e434 {
   margin-top: 30px !important;
