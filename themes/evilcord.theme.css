@@ -493,16 +493,31 @@ div[data-list-id^="private-channels"] {
   margin-left: 8px !important;
 }
 
+/* app side padding */
 .platform-osx .wrapper_ef3116 {
   margin-left: 6px !important;
 }
 
 .container__133bf, .page__5e434 {
-  padding-right: 18px !important;
+  padding-right: 8px !important;
 }
 
-/* wip, channel nav & tabs tweaks
-.content__5e434 {
+/* vc plugin serverListIndicators fix */
+#vc-indicators-container [class*="circleIconButton"] {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 0px !important;
+}
+
+#vc-indicators-container [class*="circleIconButton"] > * {
+  transform: scale(0.85) !important;
+  transform-origin: center !important;
+  margin: -2px 0 !important; 
+}
+
+/* wip, channel nav & tabs tweaks */
+/* .content__5e434 {
   margin-top: 30px !important;
   height: calc(100% - 30px) !important;
 }
