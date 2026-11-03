@@ -103,7 +103,7 @@
 }
 
 a.link__2ea32::before,
-.iconVisibility_c69b6d.wrapper__2ea32.typeThread__2ea32.modeSelected__2ea32,
+.iconVisibility_c69b6d.wrapper__2ea32.typeThread__2ea32.modeSelected__2ea32::before,
 .link__2ea32.basicChannelRowLink__2ea32::before {
   -webkit-mask-image: linear-gradient(to right, black 50%, transparent 100%) !important;
   mask-image: linear-gradient(to right, black 50%, transparent 100%) !important;
